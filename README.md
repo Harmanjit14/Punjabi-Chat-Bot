@@ -1,5 +1,5 @@
 # Punjabi-Chat-Bot
-Chatbot using iNTK libraray
+Chatbot using iNTK libraray. The implementation is straightforward with a Feed Forward Neural net with 2 hidden layers. Customization for your own use case is super easy. Just modify intents.json with possible patterns and responses and re-run the training (see below for more info).
 ## Requirements
 - Python 3.7
 - Torch 1.3.1
