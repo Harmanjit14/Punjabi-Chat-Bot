@@ -1,7 +1,8 @@
 import graphene
 import graphql_jwt
+import db.schema as db
 
-class Query(graphene.ObjectType):
+class Query(db.Query, graphene.ObjectType):
     hello = graphene.String(default_value="Hi!")
 
 class Mutation(graphene.ObjectType):

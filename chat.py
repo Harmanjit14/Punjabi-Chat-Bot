@@ -23,10 +23,10 @@ r = sr.Recognizer()
 keyword = "hazel"
 
 obj = Credentials()
-# log = case_selector(-1, obj)
-# if not log:
-#     print('ਮਾਫ਼ ਕਰਨਾ ਮੈਂ ਤੁਹਾਨੂੰ ਲੌਗਇਨ ਕਰਨ ਵਿੱਚ ਅਸਮਰੱਥ ਸੀ')
-#     exit()
+log = case_selector(-1, obj)
+if not log:
+    print('ਮਾਫ਼ ਕਰਨਾ ਮੈਂ ਤੁਹਾਨੂੰ ਲੌਗਇਨ ਕਰਨ ਵਿੱਚ ਅਸਮਰੱਥ ਸੀ')
+    exit()
 
 with sr.Microphone() as source:
     print('Adjusting mic')

@@ -38,17 +38,26 @@ def login(USERNAME, PASSWORD, client):
         return token
 
 
-def get_migration_certificate(client):
+def get_me(client):
 
     query = """
-    {
-        migrationCertificate
-    }
+   {
+  me{
+   name
+    fatherName
+    motherName
+    songChoice
+  }
+}
     """
     try:
         result = client.execute(query=query)
-        if result['data']['migrationCertificate'] == 'Success':
-            return "ਮੈਂ ਤੁਹਾਡਾ ਮਾਈਗ੍ਰੇਸ਼ਨ ਸਰਟੀਫਿਕੇਟ ਬਣਾਇਆ ਹੈ ਅਤੇ ਤੁਹਾਨੂੰ ਡਾਕ ਰਾਹੀਂ ਭੇਜ ਦਿੱਤਾ ਹੈ। ਕ੍ਰਿਪਾ ਜਾਂਚ ਕਰੋ"
+        if result['data']:
+            name = result['data']['me']['name']
+            fname = result['data']['me']['fatherName']
+            mname = result['data']['me']['motherName']
+
+            return f"ਮੈਂ ਤੈਹਾਨੂੰ ਜਾਣਦਾ ਹਾਂ. ਤੁਹਾਡਾ ਨਾਮ {name} ਹੈ।"
         else:
             return "ਮਾਫ਼ ਕਰਨਾ ਮੈਂ ਤੁਹਾਡਾ ਮਾਈਗ੍ਰੇਸ਼ਨ ਸਰਟੀਫਿਕੇਟ ਬਣਾਉਣ ਵਿੱਚ ਅਸਮਰੱਥ ਸੀ"
 
@@ -70,5 +79,13 @@ def case_selector(id, obj):
         else:
             time+='AM'
         return time
+    if id == -1:
+        uname = str(input("Enter Username: "))
+        upass = str(input("Enter Password: "))
+        token = login(uname, upass, server_client)
+        if len(token) > 3:
+            obj.setToken(token)
+            return True
+        return False
     if id == 1:
-        return get_migration_certificate(server_client)
+        return get_me()
