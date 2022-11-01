@@ -35,7 +35,7 @@ while True:
 
     with sr.Microphone() as source:
         print("Listening to Hazel")
-        audio = r.listen(source, timeout=1, phrase_time_limit=2)
+        audio = r.listen(source, timeout=0, phrase_time_limit=2)
     try:
         text = r.recognize_google(audio, language=recognize_language)
         print(text)
@@ -43,7 +43,7 @@ while True:
 
             with sr.Microphone() as source2:
                 print("Listening to Query")
-                query = r.listen(source2, timeout=3, phrase_time_limit=5)
+                query = r.listen(source2, timeout=0, phrase_time_limit=5)
             try:
                 response = r.recognize_google(query, language=language)
                 print(f'User Query: {response}')

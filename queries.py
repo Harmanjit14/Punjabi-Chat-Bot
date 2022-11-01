@@ -88,4 +88,4 @@ def case_selector(id, obj):
             return True
         return False
     if id == 1:
-        return get_me()
+        return get_me(server_client)
